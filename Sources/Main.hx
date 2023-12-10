@@ -35,14 +35,14 @@ class Main {
         //the top:
         sdfPainter.color = 0xffaaaaaa;
         //basic rectangle
-        sdfPainter.sdfRect(30+ topradius*2,20+ topradius*2, 150-topradius*4,  100-topradius*4, {tr: topradius}, outline, Color.White, 1.2);
+        sdfPainter.sdfRect(30+ topradius*2,20+ topradius*1, 150-topradius*4,  100-topradius*4, {tr: topradius}, outline, Color.White, 1.2);
         //overlapping lower part:
-        sdfPainter.sdfRect(30+ 25+topradius*2,20+ topradius*2, 125-topradius*4, 200-topradius*4, {tr: topradius}, outline, Color.White, 1.2);
+        sdfPainter.sdfRect(30+ 25+topradius*2,20+ topradius*1, 125-topradius*4, 200-topradius*4, {tr: topradius}, outline, Color.White, 1.2);
         //inner meat to be cut off later
-        sdfPainter.sdfCircle(30+ 25+topradius*2,20+ 100-topradius*2, topradius*1,  outline, Color.White, 1.2);
+        sdfPainter.sdfCircle(30+ 25+topradius*2,20+ 100-topradius*3, topradius*1,  outline, Color.White, 1.2);
         //the cutter
         sdfPainter.color = 0xffcccccc;
-        sdfPainter.sdfRect(30+ 25-topradius*0,20+ 100-topradius*2, topradius*2, topradius*2, {tr: topradius}, outline, Color.White, 1.2);
+        sdfPainter.sdfRect(30+ 25-topradius*0,20+ 100-topradius*3, topradius*2, topradius*2, {tr: topradius}, outline, Color.White, 1.2);
 
         sdfPainter.end();
     }
