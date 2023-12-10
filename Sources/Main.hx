@@ -8,6 +8,9 @@ import kha.System;
 
 class Main {
 	static var logo = ["1 1 1 1 111", "11  111 111", "1 1 1 1 1 1"];
+        static var outline = 0;
+        static var topradius = 8;
+        static var bottomradius = 4;
 
 	static function update(): Void {
 	}
@@ -16,10 +19,30 @@ class Main {
         var sdfPainter = new SDFPainter(frames[0]);
 
         sdfPainter.begin();  // takes the same arguments as a normal g2 instance.
-        sdfPainter.color = Color.Red;
-        sdfPainter.sdfRect(10, 10, 400, 60, {tr: 20, br: 20, tl: 5, bl: 5}, 5, Color.White, 2.2);
-        sdfPainter.color = Color.Cyan;
-        sdfPainter.sdfCircle(640, 360, 60, 7, Color.Orange, 2.2);
+
+        //ISO shape (units are 1/100 of 1U)
+        //basic rectangle
+        sdfPainter.color = 0xffcccccc;
+        sdfPainter.sdfRect(30+  0,20+  0, 150, 100, {tr: bottomradius}, outline, Color.White, 1.2);
+        //overlapping lower part:
+        sdfPainter.sdfRect(30+ 25,20+  0, 125, 200, {tr: bottomradius}, outline, Color.White, 1.2);
+        //inner meat to be cut off later
+        sdfPainter.sdfCircle(30+ 25,20+100, bottomradius*1.5,  outline, Color.White, 1.2);
+        sdfPainter.color = Color.Black;
+        //the cutter
+        sdfPainter.sdfRect(30+  0,20+100, 25, 25, {tr: bottomradius}, outline, Color.White, 1.2, Black, Black, Black, Black);
+
+        //the top:
+        sdfPainter.color = 0xffaaaaaa;
+        //basic rectangle
+        sdfPainter.sdfRect(30+ topradius*2,20+ topradius*2, 150-topradius*4,  100-topradius*4, {tr: topradius}, outline, Color.White, 1.2);
+        //overlapping lower part:
+        sdfPainter.sdfRect(30+ 25+topradius*2,20+ topradius*2, 125-topradius*4, 200-topradius*4, {tr: topradius}, outline, Color.White, 1.2);
+        //inner meat to be cut off later
+        sdfPainter.sdfCircle(30+ 25+topradius*2,20+ 100-topradius*2, topradius*1,  outline, Color.White, 1.2);
+        //the cutter
+        sdfPainter.color = 0xffcccccc;
+        sdfPainter.sdfRect(30+ 25-topradius*0,20+ 100-topradius*2, topradius*2, topradius*2, {tr: topradius}, outline, Color.White, 1.2);
 
         sdfPainter.end();
     }
